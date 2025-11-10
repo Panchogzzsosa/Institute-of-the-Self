@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Institute of the Self — ESSENCE for Companies</title>
+    <meta name="description" content="Ecosistema de transformación humana que conecta propósito personal con desempeño organizacional. IF Loop methodology, Self Scan y talleres para cultura coherente y equipos con energía." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --primary:#1d2024; /* color principal */
+        --secondary:#f8f8f8; /* color secundario */
+        --text:#1d2024;
+        --text-light:#f8f8f8;
+        --muted:#6b7280;
+        --line:rgba(29,32,36,0.15);
+        --accent:#E6E8EB; /* acento neutro que armoniza con la página */
+      }
+      *{ box-sizing:border-box }
+      html{ scroll-behavior:smooth; height:100% }
+      body{ margin:0; height:100%; font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:var(--text); background:var(--secondary); line-height:1.6 }
+      a{ color:inherit }
+
+      /* Layout */
+      .container{ max-width:1200px; margin:0 auto; padding:0 28px }
+      .stack-24{ padding:24px 0 }
+      .stack-48{ padding:48px 0 }
+
+      /* Nav */
+      .nav-wrap{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background:rgba(248,248,248,0.7); border-bottom:1px solid var(--line) }
+      .nav{ display:flex; align-items:center; justify-content:space-between; height:64px }
+      .brand{ font-weight:700; letter-spacing:.3px }
+      .links{ display:flex; gap:18px }
+      .links a{ text-decoration:none; font-size:14px; padding:8px 10px; border-radius:8px; transition:background .2s ease }
+      .links a:hover{ background:rgba(29,32,36,0.06) }
+
+      /* Hero */
+      .hero{ position:relative; background:var(--primary); color:var(--text-light); border-radius:0; overflow:hidden; width:100%; min-height:100vh; height:100vh; display:flex; align-items:center }
+      .hero-grid{ display:grid; grid-template-columns:1fr; gap:24px; align-items:center; padding:80px 0; position:relative; z-index:1 }
+      .subhead{ margin-top:12px; color:rgba(248,248,248,0.85); font-size:1.125rem; max-width:48ch }
+      .scroll-indicator{ position:absolute; left:50%; bottom:24px; transform:translateX(-50%); color:rgba(248,248,248,0.85); display:flex; align-items:center; gap:8px; text-decoration:none; font-size:.9rem; opacity:.9 }
+      .scroll-indicator .chev{ width:10px; height:10px; border-right:2px solid rgba(248,248,248,0.9); border-bottom:2px solid rgba(248,248,248,0.9); transform:rotate(45deg); animation:bounce 2.4s ease-in-out infinite }
+      @keyframes bounce{ 0%,100%{ transform:translateY(0) rotate(45deg) } 50%{ transform:translateY(6px) rotate(45deg) } }
+      .eyebrow{ display:inline-block; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:rgba(248,248,248,0.8); border:1px solid rgba(248,248,248,0.25); padding:6px 10px; border-radius:999px; margin-bottom:14px }
+      .hero h1{ font-size:64px; line-height:1.04; margin:0 0 18px }
+      .hero p{ color:rgba(248,248,248,0.85); max-width:640px; margin:0 0 28px }
+      .cta{ display:flex; gap:12px; flex-wrap:wrap }
+      .btn{ display:inline-block; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:600; transition:transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease }
+      .btn-primary{ background:var(--secondary); color:var(--primary); box-shadow:0 8px 20px rgba(0,0,0,0.12) }
+      .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 12px 28px rgba(0,0,0,0.16) }
+      .btn-outline{ border:1px solid rgba(248,248,248,0.6); color:var(--text-light) }
+      .btn-outline:hover{ background:rgba(248,248,248,0.1) }
+      .blob{ position:absolute; right:-120px; top:-80px; width:520px; height:520px; background:radial-gradient(closest-side, rgba(248,248,248,0.14), rgba(248,248,248,0)); filter:blur(6px); animation: drift1 22s ease-in-out infinite }
+      .blob2{ position:absolute; left:-160px; bottom:-120px; width:520px; height:520px; background:radial-gradient(closest-side, rgba(248,248,248,0.10), rgba(248,248,248,0)); filter:blur(8px); animation: drift2 28s ease-in-out infinite }
+      .blob3{ position:absolute; right:20%; bottom:-180px; width:360px; height:360px; background:radial-gradient(closest-side, rgba(248,248,248,0.08), rgba(248,248,248,0)); filter:blur(10px); animation: drift3 26s ease-in-out infinite }
+      .hero::before{ content:""; position:absolute; inset:-15%; background:conic-gradient(from 180deg at 50% 50%, rgba(255,255,255,0.06), rgba(255,255,255,0) 35%, rgba(255,255,255,0.08) 60%, rgba(255,255,255,0)); filter:blur(40px); opacity:.6; animation: spin 24s linear infinite; pointer-events:none }
+      .gridlines{ position:absolute; inset:0; background:
+        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+        background-size: 42px 42px; animation: pan 30s linear infinite; mix-blend-mode: soft-light; pointer-events:none }
+      @keyframes spin{ to{ transform: rotate(360deg) } }
+      @keyframes pan{ to{ background-position: 240px 240px, 240px 240px } }
+      @keyframes drift1{ 0%{ transform: translate(0,0) } 33%{ transform: translate(-40px,30px) } 66%{ transform: translate(30px,-20px) } 100%{ transform: translate(0,0) } }
+      @keyframes drift2{ 0%{ transform: translate(0,0) scale(1) } 50%{ transform: translate(30px,-25px) scale(1.06) } 100%{ transform: translate(0,0) scale(1) } }
+      @keyframes drift3{ 0%{ transform: translate(0,0) } 25%{ transform: translate(-20px,20px) } 50%{ transform: translate(10px,-10px) } 75%{ transform: translate(20px,0) } 100%{ transform: translate(0,0) } }
+
+      /* Qué te espera dentro */
+      .espera{ background:var(--bg) }
+      .espera-wrap{ padding:72px 0 }
+      .espera-header{ display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px }
+      .espera-title{ font-size:2.8rem; line-height:1.05; letter-spacing:.02em; margin:0 0 28px; color:var(--text); text-transform:uppercase }
+      .espera-list{ border-top:1px solid var(--line); }
+      .espera-item{ display:grid; grid-template-columns:150px 1fr; gap:16px; align-items:center; padding:18px 0; border-bottom:1px solid var(--line) }
+      .espera-left{ display:flex; align-items:center; gap:12px; color:var(--muted) }
+      .espera-left .code{ font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; letter-spacing:.08em }
+      .espera-left .icons{ display:flex; gap:6px }
+      .espera-left .i{ width:18px; height:18px; border:1px solid var(--line); border-radius:4px; display:inline-block; background:var(--bg-muted) }
+      .espera-content h3{ margin:0 0 4px; font-size:1rem }
+      .espera-content p{ margin:0; color:var(--muted); font-size:.95rem }
+      
+      /* Oferta moderna */
+      .offer{ background:var(--primary); color:var(--text-light) }
+      .offer-wrap{ padding:84px 0 }
+      .offer-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:28px }
+      .offer-head h2{ margin:0; font-size:3.1rem; line-height:1.05; letter-spacing:.02em; text-transform:uppercase }
+      .offer-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px }
+      .offer-card{ position:relative; border-radius:18px; overflow:hidden; min-height:420px; background:#13161a; outline:1px solid rgba(248,248,248,0.14); box-shadow:0 8px 30px rgba(0,0,0,0.35); transition:transform .85s ease-out, box-shadow .85s ease-out, opacity .85s ease-out; background-size:cover; background-position:center; will-change: transform, opacity; opacity:0; transform: translateY(28px) scale(.985) }
+      .offer-card.in{ opacity:1; transform: translateY(0) scale(1) }
+      .offer-card::before{ content:""; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.85)); }
+      .offer-card:hover{ transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.45) }
+      .offer-content{ position:absolute; left:0; right:0; bottom:0; padding:24px 24px 28px; z-index:1 }
+      .offer-label{ display:block; color:rgba(248,248,248,0.85); font-size:.9rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px }
+      .offer-h{ margin:0 0 10px; font-size:2.4rem; line-height:1.05; letter-spacing:.03em; text-transform:uppercase }
+      .offer-p{ margin:0; color:rgba(248,248,248,0.85) }
+      @media (max-width: 960px){ .offer-grid{ grid-template-columns:1fr } .offer-card{ min-height:380px } }
+
+
+
+      /* Feature chips */
+      .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px }
+      .chip{ padding:8px 12px; border-radius:999px; border:1px solid var(--line); background:rgba(248,248,248,0.7); font-size:13px }
+
+      /* Sections */
+      .section{ border-top:1px solid var(--line) }
+      .section h2{ font-size:28px; margin:0 0 10px }
+      .lead{ color:var(--muted); max-width:840px }
+      .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px }
+      .grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px }
+      .grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px }
+      .card{ border:1px solid var(--line); border-radius:16px; padding:18px; background:rgba(248,248,248,0.85); transition:transform .15s ease, box-shadow .15s ease }
+      .card:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.08) }
+      .card h3{ margin:0 0 8px; font-size:16px }
+      .muted{ color:var(--muted); margin:0 }
+
+      /* Callout dark */
+      .callout{ background:var(--primary); color:var(--text-light); border-radius:18px; padding:28px; display:flex; align-items:center; justify-content:space-between; gap:18px }
+      .callout p{ margin:0; color:rgba(248,248,248,0.85) }
+
+      /* Footer */
+      footer{ color:var(--muted); font-size:14px }
+
+      @media (max-width:980px){
+        .hero-grid{ grid-template-columns:1fr; min-height:auto; padding:56px 0 }
+        .grid-4{ grid-template-columns:1fr 1fr }
+        .grid-3{ grid-template-columns:1fr }
+        .grid-2{ grid-template-columns:1fr }
+        .hero h1{ font-size:44px }
+      }
+
+      /* Numeradas (estilo listado) */
+      .list-numbered{ counter-reset:item; display:grid; grid-template-columns:repeat(2,1fr); gap:16px }
+      .list-numbered li{ list-style:none; border:1px solid var(--line); border-radius:16px; padding:18px; background:#fff; position:relative }
+      .list-numbered li::before{ counter-increment:item; content: counter(item, decimal-leading-zero); position:absolute; top:16px; left:16px; font-weight:700; color:var(--primary); opacity:.25; font-size:24px }
+      @media (max-width:980px){ .list-numbered{ grid-template-columns:1fr } }
+
+      /* FAQ */
+      .faq{ border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#fff }
+      .faq-item{ border-top:1px solid var(--line) }
+      .faq-item:first-child{ border-top:none }
+      .faq-q{ display:flex; justify-content:space-between; align-items:center; padding:16px 18px; cursor:pointer }
+      .faq-q h3{ margin:0; font-size:16px }
+      .faq-a{ padding:0 18px; max-height:0; overflow:hidden; transition:max-height .25s ease }
+      .faq-a p{ margin:12px 0 18px; color:var(--muted) }
+
+      /* IF Loop Methodology — rediseño en pilares */
+      .loop{ border-top:1px solid var(--line); background:var(--secondary) }
+      .loop h2{ margin:0 0 10px }
+      .loop .lead{ margin-bottom:18px }
+      .pillars{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px }
+      .pillar{ border:1px solid var(--line); border-radius:16px; background:#fff; overflow:hidden; transition: border-color .2s ease, box-shadow .2s ease }
+      .pillar.open{ border-color: rgba(29,32,36,0.30); box-shadow:0 12px 26px rgba(0,0,0,0.10) }
+      .pillar-head{ padding:16px 16px 12px; border-bottom:1px solid var(--line); position:relative; cursor:pointer }
+      .pillar-head::after{ content:""; position:absolute; left:16px; bottom:-1px; width:48px; height:3px; background: var(--primary); opacity:0; border-radius:2px; transition: opacity .2s ease }
+      .pillar.open .pillar-head::after{ opacity:.25 }
+      .pillar-head h3{ margin:0; font-size:16px }
+      .pillar-head p{ margin:6px 0 0; color:var(--muted); font-size:.95rem; opacity:0; max-height:0; overflow:hidden; transition: opacity .2s ease, max-height .2s ease }
+      .pillar.open .pillar-head p{ opacity:.85; max-height:40px }
+      .pillar.disabled .pillar-head{ cursor:not-allowed; opacity:.7 }
+      .pillar-body{ margin:0; padding:0 16px; list-style:none; max-height:0; overflow:hidden; opacity:0; visibility:hidden; pointer-events:none; transition:max-height .25s ease, opacity .2s ease, padding .2s ease }
+      .pillar.open .pillar-body{ max-height:280px; opacity:1; visibility:visible; padding:10px 16px 16px; pointer-events:auto }
+      .pillar-body li{ padding:8px 0; border-bottom:1px dashed var(--line) }
+      .pillar-body li:last-child{ border-bottom:none }
+      @media (max-width:980px){ .pillars{ grid-template-columns:1fr } }
+      /* Cómo funciona — estilo tipo resultados con titular grande y lista numerada */
+      .funciona-grid{ display:grid; grid-template-columns:1fr; gap:24px; align-items:start }
+      .funciona-left{ margin-bottom:8px }
+      .funciona-title{ font-size:56px; line-height:1.05; letter-spacing:.02em; text-transform:uppercase; margin:0 }
+      .funciona-title .hl{ background:var(--accent); color:var(--primary); display:inline-block; padding:6px 10px }
+      .funciona-list{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line) }
+      .funciona-item{ display:grid; grid-template-columns:64px 1fr; gap:16px; padding:16px 0; border-bottom:1px solid var(--line); opacity:0; transform:translateY(12px); transition:opacity .35s ease, transform .35s ease }
+      .funciona-item.in{ opacity:1; transform:translateY(0) }
+      .funciona-item .num{ color:var(--muted); font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; letter-spacing:.06em }
+      .funciona-item p{ margin:0; }
+      .funciona-item p strong{ font-weight:700 }
+      @media (max-width:980px){ .funciona-grid{ grid-template-columns:1fr } }
+      /* Impacto — filas con barras animadas */
+      .impact-head h2{ margin:0 0 6px }
+      .impact-rows{ margin-top:16px; border-top:1px solid var(--line) }
+      .impact-row{ display:grid; grid-template-columns:160px 1fr 64px; gap:16px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line) }
+      .impact-label{ font-weight:700 }
+      .impact-bar{ height:10px; background:rgba(29,32,36,0.12); border-radius:999px; overflow:hidden }
+      .impact-fill{ display:block; height:100%; width:0; background:#1E2025; border-radius:999px; transition: width .8s ease }
+      .impact-val{ text-align:right; font-weight:700 }
+      .impact-note{ color:var(--muted); margin-top:10px }
+      @media (max-width:980px){ .impact-row{ grid-template-columns:120px 1fr 52px } }
+      /* Tema oscuro para la sección "Cómo funciona" */
+      .funciona{ background:#1E2024; color:var(--text-light) }
+      .funciona .funciona-title{ color:var(--text-light) }
+      .funciona .funciona-list{ border-top:1px solid rgba(248,248,248,0.18) }
+      .funciona .funciona-item{ border-bottom:1px solid rgba(248,248,248,0.18) }
+      .funciona .funciona-item .num{ color:rgba(248,248,248,0.65) }
+      .funciona .funciona-item p{ color:rgba(248,248,248,0.90) }
+      .funciona .funciona-item p strong{ color:#fff }
+    </style>
+  </head>
+  <body>
+    <!-- Nav -->
+    <div class="nav-wrap">
+      <div class="container nav">
+        <div class="brand">Institute of the Self</div>
+        <nav class="links">
+          <a href="#oferta">Oferta</a>
+          <a href="#ifloop">IF Loop</a>
+          <a href="#proceso">Proceso</a>
+          <a href="#impacto">Impacto</a>
+          <a href="#resultados">Resultados</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="gridlines" aria-hidden="true"></div>
+      <div class="blob" aria-hidden="true"></div>
+      <div class="blob2" aria-hidden="true"></div>
+      <div class="blob3" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div>
+          <h1>La cultura no se diseña, se despierta.</h1>
+          <p class="subhead">Conecta propósito y desempeño en tu organización.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#contacto">Solicitar demo</a>
+            <a class="btn btn-outline" href="#proceso">Ver cómo funciona</a>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-indicator" href="#oferta" aria-label="Ver más"><span>Ver más</span><span class="chev"></span></a>
+    </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        const cards = document.querySelectorAll('.offer-card');
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach((entry)=>{
+            if(entry.isIntersecting){
+              entry.target.classList.add('in');
+            } else {
+              entry.target.classList.remove('in');
+            }
+          });
+        }, { threshold: 0.2 });
+        cards.forEach((card, i)=>{
+          card.style.transitionDelay = (i * 220) + 'ms';
+          io.observe(card);
+        });
+      });
+    </script>
+
+    <section id="oferta" class="espera">
+      <div class="container espera-wrap">
+        <div class="espera-header">
+          <span>// Aquí comienza todo</span>
+          <span>// Bienvenido</span>
+        </div>
+        <h2 class="espera-title">¿Qué te espera dentro de IF Academy?</h2>
+        <div class="espera-list">
+          <div class="espera-item">
+            <div class="espera-left">
+              <span class="code">// 01</span>
+              <div class="icons"><span class="i"></span><span class="i"></span><span class="i"></span></div>
+            </div>
+            <div class="espera-content">
+              <h3>Lanza y escala proyectos con sentido</h3>
+              <p>Valida ideas y genera resultados desde cualquier lugar.</p>
+            </div>
+          </div>
+          <div class="espera-item">
+            <div class="espera-left">
+              <span class="code">// 02</span>
+              <div class="icons"><span class="i"></span><span class="i"></span><span class="i"></span></div>
+            </div>
+            <div class="espera-content">
+              <h3>Desarrolla mentalidad estratégica y productividad</h3>
+              <p>Avanza más rápido y con menos esfuerzo.</p>
+            </div>
+          </div>
+          <div class="espera-item">
+            <div class="espera-left">
+              <span class="code">// 03</span>
+              <div class="icons"><span class="i"></span><span class="i"></span><span class="i"></span></div>
+            </div>
+            <div class="espera-content">
+              <h3>Aprende habilidades prácticas que no enseñan</h3>
+              <p>Domina lo esencial para diferenciarte de tu competencia.</p>
+            </div>
+          </div>
+          <div class="espera-item">
+            <div class="espera-left">
+              <span class="code">// 04</span>
+              <div class="icons"><span class="i"></span><span class="i"></span><span class="i"></span></div>
+            </div>
+            <div class="espera-content">
+              <h3>Ejecuta con acompañamiento y comunidad</h3>
+              <p>Sin bloqueos, con dirección y mentores prácticos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    
+
+    <!-- Oferta moderna -->
+    <section id="oferta" class="offer">
+      <div class="container offer-wrap">
+        <div class="offer-head">
+          <h2>¿Qué ofrecemos?</h2>
+        </div>
+        <div class="offer-grid">
+          <a class="offer-card" href="#contacto" style="background-image:url('img/card1.png')">
+            <div class="offer-content">
+              <span class="offer-label">/ Diagnóstico</span>
+              <h3 class="offer-h">Self Scan</h3>
+              <p class="offer-p">Diagnóstico de 8 días que revela bloqueos y define microacciones prácticas.</p>
+            </div>
+          </a>
+          <a class="offer-card" href="#contacto" style="background-image:url('img/card2.png')">
+            <div class="offer-content">
+              <span class="offer-label">/ Activación</span>
+              <h3 class="offer-h">Talleres de activación</h3>
+              <p class="offer-p">3 sesiones presenciales (4h) para alinear propósito, foco y hábitos observables.</p>
+            </div>
+          </a>
+          <a class="offer-card" href="#contacto" style="background-image:url('img/card3.png')">
+            <div class="offer-content">
+              <span class="offer-label">/ Acompañamiento</span>
+              <h3 class="offer-h">Mentoría</h3>
+              <p class="offer-p">Mentoría práctica y seguimiento para sostener resultados y cultura coherente.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- IF Loop (rediseño en pilares) -->
+    <section id="ifloop" class="section loop">
+      <div class="container stack-48">
+        <h2>IF LOOP METHODOLOGY</h2>
+        <p class="lead">Cuatro pilares que explican el desempeño y se retroalimentan. Usamos el Self Scan para diagnosticar y transformamos hallazgos en microhábitos observables.</p>
+        <div class="pillars" id="pillars">
+          <article class="pillar" data-dim="saber">
+            <div class="pillar-head">
+              <h3>SABER</h3>
+              <p>Dirección y claridad</p>
+            </div>
+            <ul class="pillar-body">
+              <li>Propósito compartido y prioridades visibles</li>
+              <li>Objetivos semanales y criterios de éxito</li>
+              <li>Reuniones con agenda y decisiones claras</li>
+            </ul>
+          </article>
+          <article class="pillar" data-dim="hacer">
+            <div class="pillar-head">
+              <h3>HACER</h3>
+              <p>Energía y efectividad</p>
+            </div>
+            <ul class="pillar-body">
+              <li>Ritmo sostenible y foco (no multitarea)</li>
+              <li>Microacciones con dueños y fechas</li>
+              <li>Bloques de tiempo para ejecución profunda</li>
+            </ul>
+          </article>
+          <article class="pillar" data-dim="sentir">
+            <div class="pillar-head">
+              <h3>SENTIR</h3>
+              <p>Conexión y comunicación</p>
+            </div>
+            <ul class="pillar-body">
+              <li>Feedback breve y frecuente</li>
+              <li>Seguridad psicológica y acuerdos de convivencia</li>
+              <li>Rituales que cuidan la energía del equipo</li>
+            </ul>
+          </article>
+          <article class="pillar" data-dim="ser">
+            <div class="pillar-head">
+              <h3>SER</h3>
+              <p>Coherencia e identidad</p>
+            </div>
+            <ul class="pillar-body">
+              <li>Lo que decimos y hacemos coincide</li>
+              <li>Decisiones alineadas al propósito</li>
+              <li>Hitos y celebraciones con sentido</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proceso -->
+    <section id="proceso" class="section funciona">
+      <div class="container stack-48">
+        <div class="funciona-grid">
+          <div class="funciona-left">
+            <h2 class="funciona-title">Transformación real en <span class="hl">4 pasos</span></h2>
+          </div>
+          <ol class="funciona-list" id="funciona-list">
+            <li class="funciona-item">
+              <div class="num">01/</div>
+              <div class="content"><p><strong>Self Scan (8 días)</strong> Diagnóstico remoto que revela bloqueos en claridad, energía y comunicación; entregamos hallazgos accionables y prioridades.</p></div>
+            </li>
+            <li class="funciona-item">
+              <div class="num">02/</div>
+              <div class="content"><p><strong>Talleres de activación</strong> 3 sesiones presenciales (4h totales) para convertir hallazgos en comportamientos observables, acuerdos y microhábitos.</p></div>
+            </li>
+            <li class="funciona-item">
+              <div class="num">03/</div>
+              <div class="content"><p><strong>Implementación guiada</strong> Mentoría práctica, seguimiento semanal y tableros simples; ejecutamos microacciones con dueños y fechas claras.</p></div>
+            </li>
+            <li class="funciona-item">
+              <div class="num">04/</div>
+              <div class="content"><p><strong>Medición e iteración</strong> Monitoreamos indicadores de energía, comunicación y coherencia; iteramos para sostener cultura y desempeño.</p></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impacto (diseño diferente) -->
+    <section id="impacto" class="section impact">
+      <div class="container stack-48">
+        <div class="impact-head">
+          <h2>Impacto real — medimos y mejoramos</h2>
+          <p class="muted">Indicadores que seguimos en equipos: comunicación, energía y coherencia cultural.</p>
+        </div>
+        <div class="impact-rows" id="impact-rows">
+          <div class="impact-row">
+            <div class="impact-label">Comunicación</div>
+            <div class="impact-bar"><span class="impact-fill" data-pct="78"></span></div>
+            <div class="impact-val">78%</div>
+          </div>
+          <div class="impact-row">
+            <div class="impact-label">Energía</div>
+            <div class="impact-bar"><span class="impact-fill" data-pct="72"></span></div>
+            <div class="impact-val">72%</div>
+          </div>
+          <div class="impact-row">
+            <div class="impact-label">Coherencia</div>
+            <div class="impact-bar"><span class="impact-fill" data-pct="81"></span></div>
+            <div class="impact-val">81%</div>
+          </div>
+        </div>
+        <p class="impact-note">Valores ilustrativos; se calibran por equipo y se revisan mensualmente.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container stack-48">
+        <h2>Preguntas frecuentes</h2>
+        <div class="faq" id="faq-list">
+          <div class="faq-item">
+            <div class="faq-q"><h3>¿Cuándo veo resultados?</h3><span>+</span></div>
+            <div class="faq-a"><p>Desde la primera semana, con microacciones aplicables y hallazgos claros del Self Scan.</p></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><h3>¿Necesito experiencia previa?</h3><span>+</span></div>
+            <div class="faq-a"><p>No. La metodología guía paso a paso a equipos de cualquier tamaño.</p></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><h3>¿El proceso es presencial o remoto?</h3><span>+</span></div>
+            <div class="faq-a"><p>El diagnóstico es remoto de 8 días; los talleres son presenciales (3 sesiones, 4 horas totales).</p></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><h3>¿Cómo medimos el impacto?</h3><span>+</span></div>
+            <div class="faq-a"><p>Seguimos indicadores de energía, comunicación y coherencia; medimos productividad percibida y cohesión.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section">
+      <div class="container stack-48">
+        <div class="callout">
+          <div>
+            <h2 style="margin:0 0 6px">Despierta la cultura de tu organización</h2>
+            <p>“Cuando las personas se alinean, las organizaciones avanzan.”</p>
+          </div>
+          <div class="cta">
+            <a class="btn btn-primary" href="mailto:r.rodriguez@instituteoftheself.com">Escribir a R. Rodriguez</a>
+            <a class="btn btn-outline" href="mailto:c.castillo@instituteoftheself.com">Escribir a C. Castillo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="section">
+      <div class="container stack-24">
+        <div>Institute of the Self — IF Loop™ Methodology</div>
+      </div>
+    </footer>
+  </body>
+</html>
+<script>
+  // FAQ accordion minimal
+  (function(){
+    const list = document.getElementById('faq-list');
+    if(!list) return;
+    list.querySelectorAll('.faq-item').forEach(item => {
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      q.addEventListener('click', () => {
+        const open = a.style.maxHeight && a.style.maxHeight !== '0px';
+        // close all
+        list.querySelectorAll('.faq-a').forEach(x => x.style.maxHeight = '0px');
+        list.querySelectorAll('.faq-q span').forEach(x => x.textContent = '+');
+        // open current
+        if(!open){ a.style.maxHeight = a.scrollHeight + 'px'; q.querySelector('span').textContent = '−'; }
+      });
+    });
+  })();
+</script>
+<script>
+  // Impacto: animar barras al entrar en viewport
+  (function(){
+    const section = document.getElementById('impacto');
+    if(!section) return;
+    const fills = Array.from(section.querySelectorAll('.impact-fill'));
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          fills.forEach((el, i)=>{
+            const pct = parseInt(el.getAttribute('data-pct')||'0', 10);
+            el.style.transitionDelay = (i * 120) + 'ms';
+            el.style.width = pct + '%';
+          });
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+    io.observe(section);
+  })();
+</script>
+<script>
+  // Animación de aparición en scroll para "Cómo funciona" (nuevo diseño)
+  (function(){
+    const list = document.getElementById('funciona-list');
+    if(!list) return;
+    const items = Array.from(list.querySelectorAll('.funciona-item'));
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const idx = items.indexOf(entry.target);
+          if(idx > -1){ entry.target.style.transitionDelay = (idx * 120) + 'ms'; }
+          entry.target.classList.add('in');
+        }
+      });
+    }, { threshold: 0.2 });
+    items.forEach(li => io.observe(li));
+  })();
+</script>
+<script>
+  // IF Loop (pilares): acordeón simple para expandir/contraer
+  (function(){
+    const pillars = document.querySelectorAll('.pillar');
+    pillars.forEach(p => {
+      const head = p.querySelector('.pillar-head');
+      const body = p.querySelector('.pillar-body');
+      const hasContent = body && body.textContent.trim().length > 0;
+      if(!head) return;
+      // marcar deshabilitado si no hay contenido
+      if(!hasContent){ p.classList.add('disabled'); }
+      head.addEventListener('click', ()=>{
+        if(!hasContent) return;
+        // abrir seleccionado y cerrar los demás
+        document.querySelectorAll('.pillar').forEach(x => {
+          x.classList.remove('open');
+          const hx = x.querySelector('.pillar-head');
+          if(hx) hx.setAttribute('aria-expanded','false');
+        });
+        p.classList.add('open');
+        head.setAttribute('aria-expanded','true');
+      });
+      // soporte teclado: Enter/Espacio
+      head.setAttribute('tabindex','0');
+      head.setAttribute('role','button');
+      head.setAttribute('aria-expanded','false');
+      head.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          if(!hasContent) return;
+          document.querySelectorAll('.pillar').forEach(x => {
+            x.classList.remove('open');
+            const hx = x.querySelector('.pillar-head');
+            if(hx) hx.setAttribute('aria-expanded','false');
+          });
+          p.classList.add('open');
+          head.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+    // estado inicial: todos cerrados (solo se ve el título)
+  })();
+</script>
+<script>
+  // Apertura automática de SABER al entrar en viewport (scroll-trigger)
+  (function(){
+    const section = document.getElementById('ifloop');
+    const saber = document.querySelector('.pillar[data-dim="saber"]');
+    if(!section || !saber) return;
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          // abrir SABER y cerrar otros, solo una vez
+          document.querySelectorAll('.pillar').forEach(x => {
+            x.classList.remove('open');
+            const hx = x.querySelector('.pillar-head');
+            if(hx) hx.setAttribute('aria-expanded','false');
+          });
+          saber.classList.add('open');
+          const h = saber.querySelector('.pillar-head');
+          if(h) h.setAttribute('aria-expanded','true');
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    io.observe(section);
+  })();
+</script>
+</html>
