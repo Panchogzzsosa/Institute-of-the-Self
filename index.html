@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/Logo.png" image/x-icon">
     <style>
       :root{
         --primary:#1d2024; /* color principal */
@@ -31,6 +32,8 @@
       /* Nav */
       .nav-wrap{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background:rgba(248,248,248,0.7); border-bottom:1px solid var(--line) }
       .nav{ display:flex; align-items:center; justify-content:space-between; height:64px }
+      /* Nav full-bleed con separación sutil en bordes */
+      .nav-wrap .container{ max-width:100%; padding:0 16px }
       .brand{ font-weight:700; letter-spacing:.3px }
       .links{ display:flex; gap:18px }
       .links a{ text-decoration:none; font-size:14px; padding:8px 10px; border-radius:8px; transition:background .2s ease }
@@ -38,7 +41,7 @@
 
       /* Hero */
       .hero{ position:relative; background:var(--primary); color:var(--text-light); border-radius:0; overflow:hidden; width:100%; min-height:100vh; height:100vh; display:flex; align-items:center }
-      .hero-grid{ display:grid; grid-template-columns:1fr; gap:24px; align-items:center; padding:80px 0; position:relative; z-index:1 }
+      .hero-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:center; padding:80px 0; position:relative; z-index:1 }
       .subhead{ margin-top:12px; color:rgba(248,248,248,0.85); font-size:1.125rem; max-width:48ch }
       .scroll-indicator{ position:absolute; left:50%; bottom:24px; transform:translateX(-50%); color:rgba(248,248,248,0.85); display:flex; align-items:center; gap:8px; text-decoration:none; font-size:.9rem; opacity:.9 }
       .scroll-indicator .chev{ width:10px; height:10px; border-right:2px solid rgba(248,248,248,0.9); border-bottom:2px solid rgba(248,248,248,0.9); transform:rotate(45deg); animation:bounce 2.4s ease-in-out infinite }
@@ -47,6 +50,17 @@
       .hero h1{ font-size:64px; line-height:1.04; margin:0 0 18px }
       .hero p{ color:rgba(248,248,248,0.85); max-width:640px; margin:0 0 28px }
       .cta{ display:flex; gap:12px; flex-wrap:wrap }
+      .hero-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px }
+      .hero-chips .chip{ border-color:rgba(248,248,248,0.25); color:var(--text-light); background:rgba(248,248,248,0.08) }
+      .hero-right{ position:relative }
+      .hero-collage{ position:relative; width:100%; max-width:520px; margin:0 auto; opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; cursor:pointer }
+      .hero-collage.in{ opacity:1; transform:translateY(0) }
+      .hero-collage img{ width:100%; border-radius:18px; outline:1px solid rgba(248,248,248,0.18); box-shadow:0 14px 40px rgba(0,0,0,0.45) }
+      .hero-collage .collage-a, .hero-collage .collage-b{ transition: opacity .35s ease, transform .35s ease }
+      .hero-collage .collage-a{ position:relative; z-index:2; transform:rotate(-2deg); opacity:1 }
+      .hero-collage .collage-b{ position:absolute; right:-28px; bottom:-28px; width:72%; transform:rotate(3deg); z-index:1; opacity:.85 }
+      .hero-collage.swap .collage-a{ z-index:1; opacity:.25; transform:rotate(-6deg) scale(.98) }
+      .hero-collage.swap .collage-b{ z-index:2; opacity:1; transform:rotate(-1deg) scale(1) }
       .btn{ display:inline-block; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:600; transition:transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease }
       .btn-primary{ background:var(--secondary); color:var(--primary); box-shadow:0 8px 20px rgba(0,0,0,0.12) }
       .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 12px 28px rgba(0,0,0,0.16) }
@@ -123,6 +137,7 @@
 
       @media (max-width:980px){
         .hero-grid{ grid-template-columns:1fr; min-height:auto; padding:56px 0 }
+        .hero-right{ display:none }
         .grid-4{ grid-template-columns:1fr 1fr }
         .grid-3{ grid-template-columns:1fr }
         .grid-2{ grid-template-columns:1fr }
@@ -143,6 +158,21 @@
       .faq-q h3{ margin:0; font-size:16px }
       .faq-a{ padding:0 18px; max-height:0; overflow:hidden; transition:max-height .25s ease }
       .faq-a p{ margin:12px 0 18px; color:var(--muted) }
+      /* FAQ enhanced */
+      .faq-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:16px; margin-bottom:14px }
+      .faq-filter{ display:flex; gap:8px; flex-wrap:wrap }
+      .chip{ padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:transparent; cursor:pointer; font-weight:600 }
+      .chip.is-active{ background:rgba(248,248,248,0.08) }
+      #faq .faq-q:hover{ background:rgba(248,248,248,0.06) }
+      #faq .faq-q span{ font-weight:700 }
+      /* Fondo oscuro para Preguntas frecuentes */
+      #faq.section{ background:#1E2025; color:var(--text-light) }
+      #faq .muted{ color:rgba(248,248,248,0.75) }
+      #faq .faq{ background:transparent; border-color:rgba(255,255,255,0.12) }
+      #faq .faq-item{ border-top:1px solid rgba(255,255,255,0.12) }
+      #faq .faq-a p{ color:rgba(248,248,248,0.85) }
+      #faq .chip{ border-color:rgba(255,255,255,0.18); color:var(--text-light) }
+      #faq .chip.is-active{ background:rgba(255,255,255,0.08) }
 
       /* IF Loop Methodology — rediseño en pilares */
       .loop{ border-top:1px solid var(--line); background:var(--secondary) }
@@ -185,6 +215,10 @@
       .impact-val{ text-align:right; font-weight:700 }
       .impact-note{ color:var(--muted); margin-top:10px }
       @media (max-width:980px){ .impact-row{ grid-template-columns:120px 1fr 52px } }
+      /* Toggle Antes/Después */
+      .impact-toggle{ margin-top:8px; display:inline-flex; border:1px solid var(--line); border-radius:8px; overflow:hidden }
+      .impact-toggle button{ padding:6px 12px; background:transparent; border:0; color:inherit; cursor:pointer; font-weight:600 }
+      .impact-toggle button.is-active{ background:rgba(29,32,36,0.08) }
       /* Tema oscuro para la sección "Cómo funciona" */
       .funciona{ background:#1E2024; color:var(--text-light) }
       .funciona .funciona-title{ color:var(--text-light) }
@@ -193,42 +227,74 @@
       .funciona .funciona-item .num{ color:rgba(248,248,248,0.65) }
       .funciona .funciona-item p{ color:rgba(248,248,248,0.90) }
       .funciona .funciona-item p strong{ color:#fff }
+      /* Splash screen */
+      .splash{ position:fixed; inset:0; background:#000; color:#fff; display:grid; place-items:center; z-index:9999; transition:opacity .7s ease, visibility .7s ease }
+      .splash.hide{ opacity:0; visibility:hidden; pointer-events:none }
+      .splash-inner{ text-align:center; padding:24px }
+      .splash-logo{ width:140px; height:auto; filter:drop-shadow(0 6px 24px rgba(0,0,0,0.6)); margin-bottom:16px }
+      .splash-bar{ width:280px; max-width:60vw; height:10px; border-radius:999px; background:#222; margin:0 auto; overflow:hidden; position:relative }
+      .splash-fill{ display:block; height:100%; width:0; background:#fff; animation: progress 4s ease-in-out forwards }
+      .splash-note{ margin-top:10px; color:#cfcfcf; font-size:.9rem; letter-spacing:.02em }
+      /* Shimmer line */
+      .splash-bar::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); animation: shimmer 1.6s linear infinite }
+      @keyframes progress{ from{ width:0 } to{ width:100% } }
+      @keyframes shimmer{ from{ transform:translateX(-100%) } to{ transform:translateX(100%) } }
     </style>
   </head>
   <body>
+    <!-- Splash / Pantalla de carga -->
+    <div id="splash" class="splash" aria-label="Pantalla de carga">
+      <div class="splash-inner">
+        <img src="img/Logo.png" alt="Institute of the Self" class="splash-logo" />
+        <div class="splash-bar"><span class="splash-fill"></span></div>
+        <div class="splash-note">Cargando experiencia IF…</div>
+      </div>
+    </div>
     <!-- Nav -->
     <div class="nav-wrap">
       <div class="container nav">
         <div class="brand">Institute of the Self</div>
         <nav class="links">
-          <a href="#oferta">Oferta</a>
+          <a href="#inicio">Inicio</a>
+          <a href="#oferta">Qué ofrecemos</a>
           <a href="#ifloop">IF Loop</a>
-          <a href="#proceso">Proceso</a>
+          <a href="#proceso">Cómo funciona</a>
           <a href="#impacto">Impacto</a>
-          <a href="#resultados">Resultados</a>
-          <a href="#faq">FAQ</a>
+          <a href="#faq">Preguntas frecuentes</a>
           <a href="#contacto">Contacto</a>
         </nav>
       </div>
     </div>
 
     <!-- Hero -->
-    <section class="hero">
+    <section id="inicio" class="hero">
       <div class="gridlines" aria-hidden="true"></div>
       <div class="blob" aria-hidden="true"></div>
       <div class="blob2" aria-hidden="true"></div>
       <div class="blob3" aria-hidden="true"></div>
       <div class="container hero-grid">
-        <div>
+        <div class="hero-left">
+          <span class="eyebrow">IF Loop Methodology</span>
           <h1>La cultura no se diseña, se despierta.</h1>
           <p class="subhead">Conecta propósito y desempeño en tu organización.</p>
           <div class="cta">
             <a class="btn btn-primary" href="#contacto">Solicitar demo</a>
             <a class="btn btn-outline" href="#proceso">Ver cómo funciona</a>
           </div>
+          <div class="hero-chips">
+            <span class="chip">Diagnóstico 8 días</span>
+            <span class="chip">Talleres: 3 sesiones / 4h</span>
+            <span class="chip">Mentoría práctica</span>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-collage">
+            <img src="img/3.png" alt="Activación IF — ejemplo" class="collage-a" />
+            <img src="img/4.png" alt="Self Scan — ejemplo" class="collage-b" />
+          </div>
         </div>
       </div>
-      <a class="scroll-indicator" href="#oferta" aria-label="Ver más"><span>Ver más</span><span class="chev"></span></a>
+      <a class="scroll-indicator" href="#espera" aria-label="Ver más"><span>Ver más</span><span class="chev"></span></a>
     </section>
 
     <script>
@@ -247,10 +313,24 @@
           card.style.transitionDelay = (i * 220) + 'ms';
           io.observe(card);
         });
+        // Animar collage del hero al cargar
+        const collage = document.querySelector('.hero-collage');
+        if(collage){
+          requestAnimationFrame(()=> collage.classList.add('in'));
+          // Interacción: alternar imagen al frente al hacer click o presionar Enter/Espacio
+          collage.setAttribute('role','button');
+          collage.setAttribute('tabindex','0');
+          collage.setAttribute('aria-label','Alternar imagen del hero');
+          const toggle = ()=> collage.classList.toggle('swap');
+          collage.addEventListener('click', toggle);
+          collage.addEventListener('keydown', (e)=>{
+            if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+          });
+        }
       });
     </script>
 
-    <section id="oferta" class="espera">
+    <section id="espera" class="espera">
       <div class="container espera-wrap">
         <div class="espera-header">
           <span>// Aquí comienza todo</span>
@@ -425,23 +505,27 @@
     <section id="impacto" class="section impact">
       <div class="container stack-48">
         <div class="impact-head">
-          <h2>Impacto real — medimos y mejoramos</h2>
+          <h2>IMPACTO REAL — MEDIMOS Y MEJORAMOS</h2>
           <p class="muted">Indicadores que seguimos en equipos: comunicación, energía y coherencia cultural.</p>
+          <div class="impact-toggle" aria-label="Ver datos antes o después">
+            <button class="is-active" data-mode="antes">Antes</button>
+            <button data-mode="despues">Después</button>
+          </div>
         </div>
         <div class="impact-rows" id="impact-rows">
           <div class="impact-row">
             <div class="impact-label">Comunicación</div>
-            <div class="impact-bar"><span class="impact-fill" data-pct="78"></span></div>
+            <div class="impact-bar"><span class="impact-fill" data-before="45" data-after="78"></span></div>
             <div class="impact-val">78%</div>
           </div>
           <div class="impact-row">
             <div class="impact-label">Energía</div>
-            <div class="impact-bar"><span class="impact-fill" data-pct="72"></span></div>
+            <div class="impact-bar"><span class="impact-fill" data-before="38" data-after="72"></span></div>
             <div class="impact-val">72%</div>
           </div>
           <div class="impact-row">
             <div class="impact-label">Coherencia</div>
-            <div class="impact-bar"><span class="impact-fill" data-pct="81"></span></div>
+            <div class="impact-bar"><span class="impact-fill" data-before="50" data-after="81"></span></div>
             <div class="impact-val">81%</div>
           </div>
         </div>
@@ -452,21 +536,32 @@
     <!-- FAQ -->
     <section id="faq" class="section">
       <div class="container stack-48">
-        <h2>Preguntas frecuentes</h2>
+        <div class="faq-head">
+          <div>
+            <h2 style="margin:0 0 6px">PREGUNTAS FRECUENTES</h2>
+            <p class="muted">Respuestas rápidas sobre proceso, metodología y logística.</p>
+          </div>
+          <div class="faq-filter" id="faq-filter" aria-label="Filtrar preguntas">
+            <button class="chip is-active" data-group="all">Todas</button>
+            <button class="chip" data-group="proceso">Proceso</button>
+            <button class="chip" data-group="metodologia">Metodología</button>
+            <button class="chip" data-group="logistica">Logística</button>
+          </div>
+        </div>
         <div class="faq" id="faq-list">
-          <div class="faq-item">
+          <div class="faq-item" data-group="proceso">
             <div class="faq-q"><h3>¿Cuándo veo resultados?</h3><span>+</span></div>
             <div class="faq-a"><p>Desde la primera semana, con microacciones aplicables y hallazgos claros del Self Scan.</p></div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-group="metodologia">
             <div class="faq-q"><h3>¿Necesito experiencia previa?</h3><span>+</span></div>
             <div class="faq-a"><p>No. La metodología guía paso a paso a equipos de cualquier tamaño.</p></div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-group="logistica">
             <div class="faq-q"><h3>¿El proceso es presencial o remoto?</h3><span>+</span></div>
             <div class="faq-a"><p>El diagnóstico es remoto de 8 días; los talleres son presenciales (3 sesiones, 4 horas totales).</p></div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-group="metodologia">
             <div class="faq-q"><h3>¿Cómo medimos el impacto?</h3><span>+</span></div>
             <div class="faq-a"><p>Seguimos indicadores de energía, comunicación y coherencia; medimos productividad percibida y cohesión.</p></div>
           </div>
@@ -495,8 +590,26 @@
         <div>Institute of the Self — IF Loop™ Methodology</div>
       </div>
     </footer>
-  </body>
+</body>
 </html>
+<script>
+  // Splash: duración 4s y salida suave
+  (function(){
+    const splash = document.getElementById('splash');
+    if(!splash) return;
+    // Bloquear scroll mientras se muestra
+    document.body.style.overflow = 'hidden';
+    const DURATION_MS = 4000; // duración solicitada: 4s
+    setTimeout(()=>{
+      splash.classList.add('hide');
+      // Restaurar scroll y remover nodo al terminar transición
+      splash.addEventListener('transitionend', ()=>{
+        document.body.style.overflow = '';
+        if(splash && splash.parentNode){ splash.parentNode.removeChild(splash); }
+      }, { once:true });
+    }, DURATION_MS);
+  })();
+</script>
 <script>
   // FAQ accordion minimal
   (function(){
@@ -517,24 +630,66 @@
   })();
 </script>
 <script>
-  // Impacto: animar barras al entrar en viewport
+  // FAQ: filtro por chips (Todas, Proceso, Metodología, Logística)
+  (function(){
+    const filter = document.getElementById('faq-filter');
+    const list = document.getElementById('faq-list');
+    if(!filter || !list) return;
+    const items = Array.from(list.querySelectorAll('.faq-item'));
+    const chips = Array.from(filter.querySelectorAll('.chip'));
+    function apply(group){
+      items.forEach(it => {
+        const g = it.getAttribute('data-group') || 'all';
+        const show = group === 'all' || g === group;
+        it.style.display = show ? '' : 'none';
+        if(!show){
+          const a = it.querySelector('.faq-a');
+          const s = it.querySelector('.faq-q span');
+          if(a) a.style.maxHeight = '0px';
+          if(s) s.textContent = '+';
+        }
+      });
+      chips.forEach(c => c.classList.toggle('is-active', c.getAttribute('data-group') === group));
+    }
+    chips.forEach(c => c.addEventListener('click', () => apply(c.getAttribute('data-group'))));
+    apply('all');
+  })();
+</script>
+<script>
+  // Impacto: toggle Antes/Después con animación de barras
   (function(){
     const section = document.getElementById('impacto');
     if(!section) return;
-    const fills = Array.from(section.querySelectorAll('.impact-fill'));
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          fills.forEach((el, i)=>{
-            const pct = parseInt(el.getAttribute('data-pct')||'0', 10);
-            el.style.transitionDelay = (i * 120) + 'ms';
-            el.style.width = pct + '%';
-          });
-          io.disconnect();
-        }
+    const rows = Array.from(section.querySelectorAll('.impact-row'));
+    const fills = rows.map(r => r.querySelector('.impact-fill'));
+    const vals = rows.map(r => r.querySelector('.impact-val'));
+    const buttons = Array.from(section.querySelectorAll('.impact-toggle button'));
+
+    function applyMode(mode, animate){
+      const key = (mode === 'antes') ? 'before' : 'after';
+      fills.forEach((el, i)=>{
+        const pct = parseInt(el.getAttribute('data-' + key) || '0', 10);
+        el.style.transitionDelay = animate ? (i * 120) + 'ms' : '0ms';
+        el.style.width = pct + '%';
+        if(vals[i]) vals[i].textContent = pct + '%';
       });
+      buttons.forEach(b => b.classList.toggle('is-active', b.getAttribute('data-mode') === mode));
+    }
+
+    const io = new IntersectionObserver((entries)=>{
+      if(entries.some(e => e.isIntersecting)){
+        applyMode('antes', true);
+        io.disconnect();
+      }
     }, { threshold: 0.25 });
     io.observe(section);
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', ()=>{
+        const mode = btn.getAttribute('data-mode');
+        applyMode(mode, false);
+      });
+    });
   })();
 </script>
 <script>
