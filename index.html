@@ -31,13 +31,25 @@
 
       /* Nav */
       .nav-wrap{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background:rgba(248,248,248,0.7); border-bottom:1px solid var(--line) }
-      .nav{ display:flex; align-items:center; justify-content:space-between; height:64px }
+      .nav{ display:flex; align-items:center; justify-content:space-between; height:64px; position:relative }
       /* Nav full-bleed con separación sutil en bordes */
       .nav-wrap .container{ max-width:100%; padding:0 16px }
       .brand{ font-weight:700; letter-spacing:.3px }
       .links{ display:flex; gap:18px }
       .links a{ text-decoration:none; font-size:14px; padding:8px 10px; border-radius:8px; transition:background .2s ease }
       .links a:hover{ background:rgba(29,32,36,0.06) }
+
+      /* Toggle (hamburguesa) */
+      .nav-toggle{ display:none; width:40px; height:32px; border:1px solid var(--line); border-radius:10px; background:transparent; align-items:center; justify-content:center; gap:4px; cursor:pointer }
+      .nav-toggle .bar{ display:block; width:18px; height:2px; background:var(--text); border-radius:2px }
+
+      /* Menú móvil */
+      @media (max-width: 980px){
+        .links{ position:absolute; top:64px; left:16px; right:16px; background:rgba(248,248,248,0.95); border:1px solid var(--line); border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,0.12); padding:10px; flex-direction:column; gap:4px; opacity:0; transform:translateY(-6px); pointer-events:none; transition:opacity .2s ease, transform .2s ease }
+        .links a{ display:block; padding:10px 12px; border-radius:8px }
+        .nav-toggle{ display:inline-flex }
+        .nav-wrap.nav-open .links{ opacity:1; transform:translateY(0); pointer-events:auto }
+      }
 
       /* Hero */
       .hero{ position:relative; background:var(--primary); color:var(--text-light); border-radius:0; overflow:hidden; width:100%; min-height:100vh; height:100vh; display:flex; align-items:center }
@@ -93,6 +105,19 @@
       .espera-left .i{ width:18px; height:18px; border:1px solid var(--line); border-radius:4px; display:inline-block; background:var(--bg-muted) }
       .espera-content h3{ margin:0 0 4px; font-size:1rem }
       .espera-content p{ margin:0; color:var(--muted); font-size:.95rem }
+
+      /* Rediseño móvil: tarjetas limpias y aireadas */
+      @media (max-width:980px){
+        .espera-wrap{ padding:56px 0 }
+        .espera-header{ font-size:.8rem; padding:0 16px }
+        .espera-title{ font-size:1.8rem; margin-bottom:20px; text-align:center }
+        .espera-list{ border-top:none }
+        .espera-item{ grid-template-columns:1fr; gap:10px; padding:12px; border-bottom:none; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:0 6px 16px rgba(0,0,0,0.06); margin:0 10px 12px }
+        .espera-left{ justify-content:space-between; color:var(--muted); margin-bottom:4px }
+        .espera-left .code{ font-size:12px }
+        .espera-left .icons{ gap:4px }
+        .espera-left .i{ width:14px; height:14px }
+      }
       
       /* Oferta moderna */
       .offer{ background:var(--primary); color:var(--text-light) }
@@ -108,7 +133,11 @@
       .offer-label{ display:block; color:rgba(248,248,248,0.85); font-size:.9rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px }
       .offer-h{ margin:0 0 10px; font-size:2.4rem; line-height:1.05; letter-spacing:.03em; text-transform:uppercase }
       .offer-p{ margin:0; color:rgba(248,248,248,0.85) }
-      @media (max-width: 960px){ .offer-grid{ grid-template-columns:1fr } .offer-card{ min-height:380px } }
+      @media (max-width: 960px){
+        .offer-grid{ grid-template-columns:1fr }
+        .offer-card{ min-height:340px; margin:0 10px 14px }
+        .offer-content{ padding:20px 18px 22px }
+      }
 
 
 
@@ -136,12 +165,57 @@
       footer{ color:var(--muted); font-size:14px }
 
       @media (max-width:980px){
-        .hero-grid{ grid-template-columns:1fr; min-height:auto; padding:56px 0 }
+        .hero-grid{ grid-template-columns:1fr; min-height:auto; padding:44px 0 }
         .hero-right{ display:none }
         .grid-4{ grid-template-columns:1fr 1fr }
         .grid-3{ grid-template-columns:1fr }
         .grid-2{ grid-template-columns:1fr }
-        .hero h1{ font-size:44px }
+        .hero h1{ font-size:36px; line-height:1.12 }
+        .eyebrow{ font-size:11px; padding:5px 8px; margin-bottom:12px }
+        .subhead{ font-size:1rem; max-width:42ch }
+        .cta{ gap:10px }
+        .btn{ padding:10px 14px }
+        .hero-chips{ gap:8px; margin-top:12px }
+        .hero-chips .chip{ font-size:12px; padding:6px 10px }
+        .hero-left{ padding-left:12px }
+        /* Escala tipográfica y espaciado global */
+        body{ font-size:15px; line-height:1.7 }
+        .section h2{ font-size:22px }
+        .lead{ font-size:.95rem; line-height:1.7 }
+        .links a{ font-size:13px }
+        /* Qué te espera */
+        .espera-title{ font-size:2rem }
+        .espera-content h3{ font-size:.95rem }
+        .espera-content p{ font-size:.9rem; line-height:1.7 }
+        /* Oferta */
+        .offer-head{ justify-content:center }
+        .offer-head h2{ font-size:2.2rem; text-align:center }
+        .offer-h{ font-size:1.8rem }
+        .offer-p{ font-size:.95rem }
+        /* IF Loop: centrado en móvil */
+        #ifloop{ padding-left:16px; padding-right:16px }
+        #ifloop h2{ text-align:center }
+        #ifloop .lead{ text-align:center; margin-left:auto; margin-right:auto; max-width:48ch; font-size:.86rem; line-height:1.7 }
+        /* Cómo funciona: centrar título en móvil */
+        .funciona-title{ text-align:center }
+        /* Cómo funciona: separar contenido de las orillas en móvil */
+        .funciona .container{ padding-left:16px; padding-right:16px }
+        /* Impacto: separar contenido de las orillas en móvil */
+        .impact .container{ padding-left:16px; padding-right:16px }
+        /* Impacto */
+        .impact-label{ font-size:.95rem }
+        .impact-val{ font-size:.9rem }
+        /* FAQ */
+        .faq-q h3{ font-size:15px }
+        .faq-a p{ font-size:.95rem; line-height:1.7 }
+        /* Preguntas frecuentes: separar contenido de las orillas en móvil */
+        #faq .container{ padding-left:16px; padding-right:16px }
+        /* Callout */
+        .callout{ padding:22px }
+        /* Contacto: separar callout de las orillas en móvil */
+        #contacto .callout{ margin-left:16px; margin-right:16px }
+        /* Footer */
+        footer{ font-size:13px; text-align:center }
       }
 
       /* Numeradas (estilo listado) */
@@ -254,7 +328,12 @@
     <div class="nav-wrap">
       <div class="container nav">
         <div class="brand">Institute of the Self</div>
-        <nav class="links">
+        <button class="nav-toggle" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <nav class="links" id="navMenu">
           <a href="#inicio">Inicio</a>
           <a href="#oferta">Qué ofrecemos</a>
           <a href="#ifloop">IF Loop</a>
@@ -325,6 +404,35 @@
           collage.addEventListener('click', toggle);
           collage.addEventListener('keydown', (e)=>{
             if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+          });
+        }
+
+        // Menú móvil: abrir/cerrar con hamburguesa, cerrar al elegir enlace o con Escape
+        const navWrap = document.querySelector('.nav-wrap');
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.getElementById('navMenu');
+        if(navWrap && navToggle && navMenu){
+          const closeMenu = ()=>{
+            navWrap.classList.remove('nav-open');
+            navToggle.setAttribute('aria-expanded','false');
+          };
+          const openMenu = ()=>{
+            navWrap.classList.add('nav-open');
+            navToggle.setAttribute('aria-expanded','true');
+          };
+          navToggle.addEventListener('click', ()=>{
+            if(navWrap.classList.contains('nav-open')){ closeMenu(); } else { openMenu(); }
+          });
+          // Cerrar al seleccionar un enlace
+          navMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', closeMenu));
+          // Cerrar con Escape
+          document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+          // Cerrar al hacer click fuera del menú cuando está abierto
+          document.addEventListener('click', (e)=>{
+            if(!navWrap.classList.contains('nav-open')) return;
+            const isInsideMenu = navMenu.contains(e.target);
+            const isToggle = navToggle.contains(e.target);
+            if(!isInsideMenu && !isToggle){ closeMenu(); }
           });
         }
       });
